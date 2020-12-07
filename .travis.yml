@@ -3,6 +3,5 @@ node_js:
   - "stable"
 
 script:
-  - yarn test
-  - yarn run build
-  - yarn run lint
+  - npm test
+  - npm run build
