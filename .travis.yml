@@ -4,4 +4,4 @@ node_js:
 
 script:
   - yarn test
-  - yarn dev
+  - yarn dev2
