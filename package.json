@@ -4,7 +4,8 @@
   "description": "Back-end of the CatchMe app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "dev2": "node src/index.js",
     "lint": "eslint .",
     "test": "jest --coverage --passWithNoTests"
