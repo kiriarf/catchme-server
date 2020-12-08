@@ -8,7 +8,8 @@
     "dev": "nodemon src/app.js",
     "dev2": "node src/index.js",
     "lint": "eslint .",
-    "test": "jest --coverage --passWithNoTests"
+    "test": "jest --coverage --passWithNoTests", 
+    "migrate": "node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
