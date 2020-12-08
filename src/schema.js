@@ -7,8 +7,6 @@ const typeDefs = gql`
       startTime: Int
       endTime: Int
       users: [User]
-      locations: [Location]
-      scores: [Score]
       }
 
     type User {
@@ -16,8 +14,8 @@ const typeDefs = gql`
       username: String!
       position: Int
       race: Race!
-      locations: [Location]
-      scores: [Score]
+      location: Location
+      score: Score
     }
 
     type Location {
@@ -27,23 +25,22 @@ const typeDefs = gql`
       endLat: Float!
       endLong: Float!
       distance: Float!
-      race: Race!
       user: User!
     }
 
     type Score {
       id: Int!
       time: Int!
-      race: Race!
       user: User!
     }
 
     type Query {
-        user(id: Int!): User
+        user(id: Int!): User!
         users: [User]
         race(id: Int!): Race!
-        locations: [Location]
-        scores: [Score]
+        location: Location
+        score: Score
+        races: [Race]
     }
 
     type Mutation {
@@ -55,34 +52,10 @@ const typeDefs = gql`
           endLat: Float!, 
           endLong: Float!, 
           distance: Float!,
-          raceId: Int!,
           userId: Int!): Location!
-        createScore(time: Int!, raceId: Int!, userId: Int!): Score!
+        createScore(time: Int!, userId: Int!): Score!
 
     }
 `
 
 module.exports = typeDefs
-
-// query {
-//   race {
-//     dist
-//     ..
-//     users {
-//       [
-//         user1 {
-//           username
-//           location {
-//             start
-//             end
-//             ...
-//           }
-//           score {
-//             time
-//             ...
-//           }
-//         }
-//       ]
-//     }
-//   }
-// }

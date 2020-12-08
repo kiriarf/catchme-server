@@ -28,10 +28,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      raceId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,

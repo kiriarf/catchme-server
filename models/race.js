@@ -9,8 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Race.hasMany(models.User);
-      Race.hasMany(models.Location);
-      Race.hasMany(models.Score);
     }
   }
 

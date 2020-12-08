@@ -1,19 +1,22 @@
 const resolvers = {
   Query: {
       async user (root, { id }, { models }) {
-        return models.User.findById(id)
-      },
-      async race (root, { id }, { models }) {
-        return models.Race.findById(id)
+        return models.User.findByPk(id)
       },
       async users (root, args, { models }) {
-            return models.User.findAll()
+        return models.User.findAll()
       },
-      async locations (root, args, { models }) {
-        return models.Location.findAll()
+      async race (root, { id }, { models }) {
+        return models.Race.findByPk(id)
       },
-      async scores (root, args, { models }) {
-        return models.Score.findAll()
+      async races (root, args, { models }) {
+        return models.Race.findAll()
+      },
+      async location (root, { id }, { models }) {
+        return models.Location.findByPk(id)
+      },
+      async score (root, { id }, { models }) {
+        return models.Score.findByPk(id)
       },
     },
 
@@ -32,21 +35,52 @@ const resolvers = {
           raceId
       })
     },
-    async createLocation (root, { startLat, startLong, endLat, endLong, distance, raceId, userId }, { models }) {
+    async createLocation (root, { startLat, startLong, endLat, endLong, distance, userId }, { models }) {
       return models.Location.create({
         startLat, 
         startLong, 
         endLat, 
         endLong, 
         distance,
-        raceId,
         userId
       })
     },
-    async createScore (root, { time, raceId, userId }, { models }) {
-      return models.User.create({ time, raceId, userId })
+    async createScore (root, { time, userId }, { models }) {
+      return models.Score.create({ time, userId })
     },
   },
+
+  Race: {
+    async users (race) {
+      return race.getUsers()
+    }
+  },
+
+  User: {
+    async race (user) {
+      return user.getRace()
+    },
+    async location (user) {
+      return user.getLocation()
+    },
+    async score (user) {
+      return user.getScore()
+    }
+  },
+
+  Location: {
+    async user (location) {
+      return location.getUser()
+    }
+  },
+
+  Score: {
+    async user (score) {
+      return score.getUser()
+    }
+  }
+
+
 }
 
 module.exports = resolvers

@@ -12,10 +12,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      raceId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
