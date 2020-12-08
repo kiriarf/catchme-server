@@ -56,6 +56,7 @@ const typeDefs = gql`
     ): Location!
     createScore(time: Int!, userId: Int!): Score!
     updateUser(id: Int!, position: Int!): User!
+    deleteUser(id: Int!): String!
   }
 `;
 

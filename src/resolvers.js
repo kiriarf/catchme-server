@@ -53,8 +53,13 @@ const resolvers = {
       return models.Score.create({ time, userId });
     },
     async updateUser(root, { id, position }, { models }) {
-      return models.User.update({ position: position }, { where: { id: id } });
+      models.User.update({ position: position }, { where: { id: id } });
+      return models.User.findByPk(id);
     },
+    async deleteUser(root, { id }, { models }) {
+      models.User.destroy({where: { id: id } });
+      return "User successfully deleted";
+    }, 
   },
 
   Race: {
