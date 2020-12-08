@@ -9,18 +9,23 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       startLat: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       startLong: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       endLat: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       endLong: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       distance: {
+        allowNull: false,
         type: Sequelize.FLOAT,
       },
       raceId: {

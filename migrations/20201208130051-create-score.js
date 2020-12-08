@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       time: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       raceId: {

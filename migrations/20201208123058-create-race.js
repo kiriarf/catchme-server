@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       distance: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       startTime: {
