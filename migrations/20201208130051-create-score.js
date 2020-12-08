@@ -13,11 +13,11 @@ module.exports = {
       },
       raceId: {
         allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
