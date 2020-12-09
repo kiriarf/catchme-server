@@ -15,7 +15,7 @@ module.exports = {
       position: {
         type: Sequelize.INTEGER,
       },
-      raceId: {
+      RaceId: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },

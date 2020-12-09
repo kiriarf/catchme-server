@@ -28,7 +28,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      userId: {
+      UserId: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },

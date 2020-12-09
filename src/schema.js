@@ -45,16 +45,16 @@ const typeDefs = gql`
 
   type Mutation {
     createRace(distance: Int!, startTime: Int, endTime: Int): Race!
-    createUser(username: String!, position: Int, raceId: Int!): User!
+    createUser(username: String!, position: Int, RaceId: Int!): User!
     createLocation(
       startLat: Float!
       startLong: Float!
       endLat: Float!
       endLong: Float!
       distance: Float!
-      userId: Int!
+      UserId: Int!
     ): Location!
-    createScore(time: Int!, userId: Int!): Score!
+    createScore(time: Int!, UserId: Int!): Score!
     updateUser(id: Int!, position: Int!): User!
     deleteUser(id: Int!): String!
     updateRaceStartTime(id: Int!, startTime: Int!): Race!

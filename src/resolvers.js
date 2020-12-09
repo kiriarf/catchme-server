@@ -36,11 +36,11 @@ const resolvers = {
       models.Race.update({ endTime: endTime }, { where: { id: id } });
       return models.Race.findByPk(id);
     },
-    async createUser(root, { username, position, raceId }, { models }) {
+    async createUser(root, { username, position, RaceId }, { models }) {
       return models.User.create({
         username,
         position,
-        raceId,
+        RaceId,
       });
     },
     async updateUser(root, { id, position }, { models }) {
@@ -53,7 +53,7 @@ const resolvers = {
     },
     async createLocation(
       root,
-      { startLat, startLong, endLat, endLong, distance, userId },
+      { startLat, startLong, endLat, endLong, distance, UserId },
       { models }
     ) {
       return models.Location.create({
@@ -62,7 +62,7 @@ const resolvers = {
         endLat,
         endLong,
         distance,
-        userId,
+        UserId,
       });
     },
     async updateLocation(
@@ -86,8 +86,8 @@ const resolvers = {
       models.Location.destroy({ where: { id: id } });
       return "Location successfully deleted";
     },
-    async createScore(root, { time, userId }, { models }) {
-      return models.Score.create({ time, userId });
+    async createScore(root, { time, UserId }, { models }) {
+      return models.Score.create({ time, UserId });
     },
   },
 
