@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates single user 1`] = `
+Object {
+  "data": Object {
+    "createUser": Object {
+      "id": 1,
+      "position": null,
+      "race": Object {
+        "distance": 1000,
+      },
+      "username": "testboy",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

@@ -1,5 +1,6 @@
 {
   "development": {
+    "database": "catchme_dev",
     "dialect": "postgres"
   },
   "production": {
@@ -7,6 +8,7 @@
     "use_env_variable": "DATABASE_URL"
   },
   "test": {
+    "database": "catchme_test",
     "dialect": "postgres"
   }
 }

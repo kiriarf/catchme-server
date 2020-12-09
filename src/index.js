@@ -18,6 +18,8 @@ server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
 
+module.exports = server;
+
 // server.listen(
 //   {
 //     port: env === 'production'? process.env.Port : 4000
