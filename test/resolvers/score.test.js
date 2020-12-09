@@ -1,1 +1,1 @@
-const resolvers = require("../src/resolvers/score.js");
+const resolvers = require("../../src/resolvers/score.js");

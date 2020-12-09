@@ -1,1 +1,1 @@
-const resolvers = require("../src/resolvers/location.js");
+const resolvers = require("../../src/resolvers/location.js");
