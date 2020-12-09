@@ -28,12 +28,28 @@ const resolvers = {
         endTime,
       });
     },
+    async updateRaceStartTime(root, { id, startTime }, { models }) {
+      models.Race.update({ startTime: startTime }, { where: { id: id } });
+      return models.Race.findByPk(id);
+    },
+    async updateRaceEndTime(root, { id, endTime }, { models }) {
+      models.Race.update({ endTime: endTime }, { where: { id: id } });
+      return models.Race.findByPk(id);
+    },
     async createUser(root, { username, position, raceId }, { models }) {
       return models.User.create({
         username,
         position,
         raceId,
       });
+    },
+    async updateUser(root, { id, position }, { models }) {
+      models.User.update({ position: position }, { where: { id: id } });
+      return models.User.findByPk(id);
+    },
+    async deleteUser(root, { id }, { models }) {
+      models.User.destroy({ where: { id: id } });
+      return "User successfully deleted";
     },
     async createLocation(
       root,
@@ -49,17 +65,30 @@ const resolvers = {
         userId,
       });
     },
+    async updateLocation(
+      root,
+      { id, startLat, startLong, endLat, endLong, distance },
+      { models }
+    ) {
+      models.Location.update(
+        {
+          startLat: startLat,
+          startLong: startLong,
+          endLat: endLat,
+          endLong: endLong,
+          distance: distance,
+        },
+        { where: { id: id } }
+      );
+      return models.Location.findByPk(id);
+    },
+    async deleteLocation(root, { id }, { models }) {
+      models.Location.destroy({ where: { id: id } });
+      return "Location successfully deleted";
+    },
     async createScore(root, { time, userId }, { models }) {
       return models.Score.create({ time, userId });
     },
-    async updateUser(root, { id, position }, { models }) {
-      models.User.update({ position: position }, { where: { id: id } });
-      return models.User.findByPk(id);
-    },
-    async deleteUser(root, { id }, { models }) {
-      models.User.destroy({where: { id: id } });
-      return "User successfully deleted";
-    }, 
   },
 
   Race: {
