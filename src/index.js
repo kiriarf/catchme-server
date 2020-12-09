@@ -1,11 +1,14 @@
 const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
-const resolvers = require("./resolvers");
+const raceResolvers = require("./resolvers/race");
+const userResolvers = require("./resolvers/user");
+const locationResolvers = require("./resolvers/location");
+const scoreResolvers = require("./resolvers/score");
 const models = require("../models");
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: [raceResolvers, userResolvers, locationResolvers, scoreResolvers],
   context: { models },
   introspection: true,
   playground: true,
