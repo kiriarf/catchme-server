@@ -1,5 +1,11 @@
 {
   "development": {
     "dialect": "postgres"
+  },
+  "production": {
+    "dialect": "postgres"
+  },
+  "test": {
+    "dialect": "postgres"
   }
 }
