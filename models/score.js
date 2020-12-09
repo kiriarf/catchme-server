@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Score.belongsTo(models.User, { foreignKey: "userId" });
+      Score.belongsTo(models.User, { foreignKey: "UserId" });
     }
   }
   Score.init(
