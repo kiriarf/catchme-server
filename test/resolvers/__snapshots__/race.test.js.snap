@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Race resolvers fetches single race 1`] = `
+exports[`Race resolvers creates single race 1`] = `
 Object {
   "data": Object {
     "createRace": Object {
@@ -18,7 +18,7 @@ Object {
 }
 `;
 
-exports[`Race resolvers fetches single race 2`] = `
+exports[`Race resolvers fetches single race 1`] = `
 Object {
   "data": Object {
     "race": Object {

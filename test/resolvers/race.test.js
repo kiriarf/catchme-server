@@ -24,9 +24,6 @@ const QUERY_RACE = gql`
 `;
 describe("Race resolvers", () => {
   let server;
-  beforeAll(async () => {
-    await db.sequelize.sync({ force: true });
-  });
 
   beforeEach(async () => {
     server = new ApolloServer({
@@ -37,14 +34,15 @@ describe("Race resolvers", () => {
   });
 
   afterAll(async () => {
+    await db.sequelize.sync({ force: true });
     await db.sequelize.close();
   });
   afterEach(async () => {
     await server.stop();
   });
 
-  it("fetches single race", async () => {
-    const { query, mutate } = createTestClient(server);
+  it("creates single race", async () => {
+    const { mutate } = createTestClient(server);
     const res = await mutate({
       mutation: CREATE_RACE,
       variables: { distance: 1000 },
@@ -53,7 +51,7 @@ describe("Race resolvers", () => {
   });
 
   it("fetches single race", async () => {
-    const { query, mutate } = createTestClient(server);
+    const { query } = createTestClient(server);
     const res = await query({
       query: QUERY_RACE,
       variables: { id: 1 },
