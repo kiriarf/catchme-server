@@ -1,6 +1,6 @@
 const gql = require("graphql-tag");
 const { ApolloServer } = require("apollo-server");
-const resolvers = require("../../src/resolvers/race.js");
+const resolvers = require("../../src/resolvers/*");
 const typeDefs = require("../../src/schema");
 const models = require("../../models");
 const { createTestClient } = require("apollo-server-testing");
@@ -27,7 +27,6 @@ const CREATE_USER = gql`
     }
   }
 `;
-
 const CREATE_LOCATION = gql`
   mutation createLocation(
     $startLat: Int!
@@ -90,45 +89,33 @@ const QUERY_USER = gql`
 describe("User resolvers", () => {
   let server;
 
-  // beforeEach(async () => {
-  //   server = new ApolloServer({
-  //     typeDefs,
-  //     resolvers,
-  //     context: { models },
-  //   });
-  //});
-  beforeAll(() => {
+  beforeEach(async () => {
     server = new ApolloServer({
       typeDefs,
       resolvers,
       context: { models },
     });
-    const { mutate } = createTestClient(server);
-    db.sequelize.sync({ force: true });
-    const res = mutate({
-      mutation: CREATE_RACE,
-      variables: { distance: 1000 },
-    });
-    return res;
   });
 
-  afterAll(() => {
-    return db.sequelize.close();
+  afterAll(async () => {
+    await db.sequelize.sync({ force: true });
+    await db.sequelize.close();
   });
-  afterAll(() => {
-    return server.stop();
+  afterEach(async () => {
+    await server.stop();
   });
-  // afterEach(async () => {
-  //   await server.stop();
-  // });
 
   it("creates a user", async () => {
     const { mutate } = createTestClient(server);
+    const res = await mutate({
+      mutation: CREATE_RACE,
+      variables: { distance: 1000 },
+    });
     const resUser = await mutate({
       mutation: CREATE_USER,
       variables: { username: "testguy", RaceId: 1 },
     });
-    //expect(res).toMatchSnapshot();
+    expect(res).toMatchSnapshot();
     expect(resUser).toMatchSnapshot();
   });
 
