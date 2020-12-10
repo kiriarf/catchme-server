@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server");
+const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Race {
@@ -36,11 +36,11 @@ const typeDefs = gql`
 
   type Query {
     user(id: Int!): User!
-    users: [User]
+    users: [User]!
     race(id: Int!): Race!
-    location: Location
-    score: Score
-    races: [Race]
+    location(id: Int!): Location!
+    score(id: Int!): Score!
+    races: [Race]!
   }
 
   type Mutation {
@@ -56,13 +56,10 @@ const typeDefs = gql`
     ): Location!
     createScore(time: Int!, UserId: Int!): Score!
     updateUser(id: Int!, position: Int!): User!
-    deleteUser(id: Int!): String!
     updateRaceStartTime(id: Int!, startTime: Int!): Race!
     updateRaceEndTime(id: Int!, endTime: Int!): Race!
     updateLocation(
       id: Int!
-      startLat: Float!
-      startLong: Float!
       endLat: Float!
       endLong: Float!
       distance: Float!

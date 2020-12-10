@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Race resolvers 1: fetches single race after it is created 1`] = `
+Object {
+  "data": Object {
+    "race": Object {
+      "distance": 1000,
+      "endTime": null,
+      "id": 1,
+      "startTime": null,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Race resolvers 2: fetches array of two races when second race is created 1`] = `
+Object {
+  "data": Object {
+    "races": Array [
+      Object {
+        "distance": 1000,
+        "id": 1,
+      },
+      Object {
+        "distance": 2000,
+        "id": 2,
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Race resolvers 3: can update the start and end time 1`] = `
+Object {
+  "data": Object {
+    "race": Object {
+      "distance": 1000,
+      "endTime": 1607698979,
+      "id": 1,
+      "startTime": 1607598979,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
