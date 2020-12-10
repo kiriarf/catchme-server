@@ -36,11 +36,11 @@ const typeDefs = gql`
 
   type Query {
     user(id: Int!): User!
-    users: [User]
+    users: [User]!
     race(id: Int!): Race!
     location(id: Int!): Location!
     score(id: Int!): Score!
-    races: [Race]
+    races: [Race]!
   }
 
   type Mutation {
@@ -60,8 +60,6 @@ const typeDefs = gql`
     updateRaceEndTime(id: Int!, endTime: Int!): Race!
     updateLocation(
       id: Int!
-      startLat: Float!
-      startLong: Float!
       endLat: Float!
       endLong: Float!
       distance: Float!

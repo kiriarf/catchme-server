@@ -20,15 +20,9 @@ const locationResolvers = {
         UserId,
       });
     },
-    async updateLocation(
-      root,
-      { id, startLat, startLong, endLat, endLong, distance },
-      { models }
-    ) {
+    async updateLocation(root, { id, endLat, endLong, distance }, { models }) {
       models.Location.update(
         {
-          startLat: startLat,
-          startLong: startLong,
           endLat: endLat,
           endLong: endLong,
           distance: distance,

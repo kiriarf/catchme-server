@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Location resolvers the location can be fetched with the user that belongs to 1`] = `
+Object {
+  "data": Object {
+    "location": Object {
+      "distance": 0,
+      "endLat": 51.5007,
+      "endLong": 0.1246,
+      "id": 1,
+      "startLat": 51.5007,
+      "startLong": 0.1246,
+      "user": Object {
+        "id": 1,
+        "position": null,
+        "username": "testguy",
+      },
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Location resolvers the location can be updated and fetched with the user that belongs to 1`] = `
+Object {
+  "data": Object {
+    "updateLocation": Object {
+      "distance": 0,
+      "endLat": 51.5007,
+      "endLong": 0.1246,
+      "id": 1,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Location resolvers the location can be updated and fetched with the user that belongs to 2`] = `
+Object {
+  "data": Object {
+    "location": Object {
+      "distance": 300,
+      "endLat": 51.4987,
+      "endLong": 0.1289,
+      "id": 1,
+      "startLat": 51.5007,
+      "startLong": 0.1246,
+      "user": Object {
+        "id": 1,
+        "position": null,
+        "username": "testguy",
+      },
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
