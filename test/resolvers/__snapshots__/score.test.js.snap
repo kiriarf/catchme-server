@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User resolvers the score can be fetched with the user that belongs to 1`] = `
+Object {
+  "data": Object {
+    "score": Object {
+      "id": 1,
+      "time": 300000,
+      "user": Object {
+        "id": 1,
+        "position": null,
+        "username": "testguy",
+      },
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

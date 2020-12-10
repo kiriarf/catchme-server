@@ -38,8 +38,8 @@ const typeDefs = gql`
     user(id: Int!): User!
     users: [User]
     race(id: Int!): Race!
-    location: Location
-    score: Score
+    location(id: Int!): Location!
+    score(id: Int!): Score!
     races: [Race]
   }
 
