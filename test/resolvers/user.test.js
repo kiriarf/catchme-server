@@ -156,7 +156,7 @@ describe('User resolvers', () => {
     expect(resRace).toMatchSnapshot();
   });
 
-  it('2: can fetch a user with its race, location, and score', async () => {
+  it('2: can fetch a user with its race, location, score and updated position', async () => {
     const { query, mutate } = createTestClient(server);
     const resLoc = await mutate({
       mutation: CREATE_LOCATION,
@@ -173,6 +173,10 @@ describe('User resolvers', () => {
       mutation: CREATE_SCORE,
       variables: { time: 300000, UserId: 1 },
     });
+    const updateUser1Res = await mutate({
+      mutation: UPDATE_USER,
+      variables: { id: 1, position: 1 },
+    });
     const resUser = await query({
       query: QUERY_USER,
       variables: { id: 1 },
@@ -180,19 +184,27 @@ describe('User resolvers', () => {
     expect(resUser).toMatchSnapshot();
   });
 
-  it("3: can update the users' position", async () => {
+  it("can fetch multiple users", async () => {
     const { query, mutate } = createTestClient(server);
-    const updateUser1Res = await mutate({
-      mutation: UPDATE_USER,
-      variables: { id: 1, position: 1 },
-    });
-    const updateUser2Res = await mutate({
-      mutation: UPDATE_USER,
-      variables: { id: 2, position: 2 },
-    });
     const resUsers = await query({
       query: QUERY_USERS,
     });
     expect(resUsers).toMatchSnapshot();
   });
+
+  // it("3: can update the users' position", async () => {
+  //   const { query, mutate } = createTestClient(server);
+  //   const updateUser1Res = await mutate({
+  //     mutation: UPDATE_USER,
+  //     variables: { id: 1, position: 1 },
+  //   });
+  //   const updateUser2Res = await mutate({
+  //     mutation: UPDATE_USER,
+  //     variables: { id: 2, position: 2 },
+  //   });
+  //   const resUsers = await query({
+  //     query: QUERY_USERS,
+  //   });
+  //   expect(resUsers).toMatchSnapshot();
+  // });
 });

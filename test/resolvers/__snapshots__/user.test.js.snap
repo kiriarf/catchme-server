@@ -30,7 +30,7 @@ Object {
 }
 `;
 
-exports[`User resolvers 2: can fetch a user with its race, location, and score 1`] = `
+exports[`User resolvers 2: can fetch a user with its race, location, score and updated position 1`] = `
 Object {
   "data": Object {
     "user": Object {
@@ -43,7 +43,7 @@ Object {
         "startLat": 53.12345,
         "startLong": 0.12345,
       },
-      "position": null,
+      "position": 1,
       "race": Object {
         "distance": 1000,
         "id": 1,
@@ -65,19 +65,19 @@ Object {
 }
 `;
 
-exports[`User resolvers 3: can update the users' position 1`] = `
+exports[`User resolvers can fetch multiple users 1`] = `
 Object {
   "data": Object {
     "users": Array [
       Object {
+        "id": 2,
+        "position": null,
+        "username": "testguy2",
+      },
+      Object {
         "id": 1,
         "position": 1,
         "username": "testguy",
-      },
-      Object {
-        "id": 2,
-        "position": 2,
-        "username": "testguy2",
       },
     ],
   },
