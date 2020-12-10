@@ -135,7 +135,7 @@ describe("User resolvers", () => {
     await server.stop();
   });
 
-  it("the race has two users", async () => {
+  it("1: the race has two users", async () => {
     const { query, mutate } = createTestClient(server);
     const resCreateRace = await mutate({
       mutation: CREATE_RACE,
@@ -156,7 +156,7 @@ describe("User resolvers", () => {
     expect(resRace).toMatchSnapshot();
   })
 
-  it("can fetch a user with its race, location, and score", async () => {
+  it("2: can fetch a user with its race, location, and score", async () => {
     const { query, mutate } = createTestClient(server);
     const resLoc = await mutate({
       mutation: CREATE_LOCATION,
@@ -180,7 +180,7 @@ describe("User resolvers", () => {
     expect(resUser).toMatchSnapshot();
   });
 
-  it("can update the users' position", async () => {
+  it("3: can update the users' position", async () => {
     const { query, mutate } = createTestClient(server);
     const updateUser1Res = await mutate({
       mutation: UPDATE_USER,

@@ -1,6 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User resolvers can fetch a user with its race, location, and score 1`] = `
+exports[`User resolvers 1: the race has two users 1`] = `
+Object {
+  "data": Object {
+    "race": Object {
+      "distance": 1000,
+      "id": 1,
+      "users": Array [
+        Object {
+          "id": 1,
+          "position": null,
+          "username": "testguy",
+        },
+        Object {
+          "id": 2,
+          "position": null,
+          "username": "testguy2",
+        },
+      ],
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`User resolvers 2: can fetch a user with its race, location, and score 1`] = `
 Object {
   "data": Object {
     "user": Object {
@@ -35,7 +65,7 @@ Object {
 }
 `;
 
-exports[`User resolvers can update the users' position 1`] = `
+exports[`User resolvers 3: can update the users' position 1`] = `
 Object {
   "data": Object {
     "users": Array [
@@ -50,36 +80,6 @@ Object {
         "username": "testguy2",
       },
     ],
-  },
-  "errors": undefined,
-  "extensions": undefined,
-  "http": Object {
-    "headers": Headers {
-      Symbol(map): Object {},
-    },
-  },
-}
-`;
-
-exports[`User resolvers the race has two users 1`] = `
-Object {
-  "data": Object {
-    "race": Object {
-      "distance": 1000,
-      "id": 1,
-      "users": Array [
-        Object {
-          "id": 1,
-          "position": null,
-          "username": "testguy",
-        },
-        Object {
-          "id": 2,
-          "position": null,
-          "username": "testguy2",
-        },
-      ],
-    },
   },
   "errors": undefined,
   "extensions": undefined,

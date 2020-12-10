@@ -88,6 +88,12 @@ const UPDATE_LOCATION = gql`
     }
   }
 `;
+const DELETE_LOCATION = gql`
+  mutation deleteLocation($id: Int!) {
+    deleteLocation(id: $id)
+  }
+`;
+
 describe("Location resolvers", () => {
   let server;
 
@@ -105,7 +111,7 @@ describe("Location resolvers", () => {
     await server.stop();
   });
 
-  it("the location can be fetched with the user that belongs to", async () => {
+  it("1: the location can be fetched with the user that belongs to", async () => {
     const { query, mutate } = createTestClient(server);
     const resCreateRace = await mutate({
       mutation: CREATE_RACE,
@@ -132,7 +138,7 @@ describe("Location resolvers", () => {
     });
     expect(resLocation).toMatchSnapshot();
   });
-  it("the location can be updated and fetched with the user that belongs to", async () => {
+  it("2: the location can be updated and fetched with the user that belongs to", async () => {
     const { query, mutate } = createTestClient(server);
     const resUpdateLocation = await mutate({
       mutation: UPDATE_LOCATION,
@@ -147,7 +153,15 @@ describe("Location resolvers", () => {
       query: QUERY_LOCATION,
       variables: { id: 1 },
     });
-    expect(resUpdateLocation).toMatchSnapshot();
     expect(resNewLocation).toMatchSnapshot();
+  });
+
+  it("3: can delete the location", async () => {
+    const { mutate } = createTestClient(server);
+    const resDeleteLocation = await mutate({
+      mutation: DELETE_LOCATION,
+      variables: {id: 1},
+    });
+    expect(resDeleteLocation).toMatchSnapshot();
   });
 });

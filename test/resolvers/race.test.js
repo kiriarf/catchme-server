@@ -66,7 +66,7 @@ describe("Race resolvers", () => {
     await server.stop();
   });
 
-  it("fetches single race after it is created", async () => {
+  it("1: fetches single race after it is created", async () => {
     const { query, mutate } = createTestClient(server);
     const createRaceRes = await mutate({
       mutation: CREATE_RACE,
@@ -79,7 +79,7 @@ describe("Race resolvers", () => {
     expect(raceRes).toMatchSnapshot();
   });
 
-  it("fetches array of two races when second race is created", async () => {
+  it("2: fetches array of two races when second race is created", async () => {
     const { query, mutate } = createTestClient(server);
     const createRaceRes = await mutate({
       mutation: CREATE_RACE,
@@ -91,7 +91,7 @@ describe("Race resolvers", () => {
     expect(racesRes).toMatchSnapshot();
   });
 
-  it("can update the start and end time", async () => {
+  it("3: can update the start and end time", async () => {
     const { query, mutate } = createTestClient(server);
     const updateRaceStartTimeRes = await mutate({
       mutation: UPDATE_RACE_START_TIME,

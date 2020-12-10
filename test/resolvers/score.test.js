@@ -63,7 +63,7 @@ describe("User resolvers", () => {
     await server.stop();
   });
 
-  it("the score can be fetched with the user that belongs to", async () => {
+  it("1: the score can be fetched with the user that belongs to", async () => {
     const { query, mutate } = createTestClient(server);
     const resCreateRace = await mutate({
       mutation: CREATE_RACE,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User resolvers the score can be fetched with the user that belongs to 1`] = `
+exports[`User resolvers 1: the score can be fetched with the user that belongs to 1`] = `
 Object {
   "data": Object {
     "score": Object {
