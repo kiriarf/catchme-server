@@ -20,10 +20,6 @@ const userResolvers = {
       models.User.update({ position: position }, { where: { id: id } });
       return models.User.findByPk(id);
     },
-    async deleteUser(root, { id }, { models }) {
-      models.User.destroy({ where: { id: id } });
-      return "User successfully deleted";
-    },
   },
 
   User: {

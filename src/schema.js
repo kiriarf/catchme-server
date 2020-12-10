@@ -56,7 +56,6 @@ const typeDefs = gql`
     ): Location!
     createScore(time: Int!, UserId: Int!): Score!
     updateUser(id: Int!, position: Int!): User!
-    deleteUser(id: Int!): String!
     updateRaceStartTime(id: Int!, startTime: Int!): Race!
     updateRaceEndTime(id: Int!, endTime: Int!): Race!
     updateLocation(
