@@ -8,8 +8,10 @@ const locationResolvers = {
   Mutation: {
     async createLocation(
       root,
-      { startLat, startLong, endLat, endLong, distance, UserId },
-      { models }
+      {
+        startLat, startLong, endLat, endLong, distance, UserId,
+      },
+      { models },
     ) {
       return models.Location.create({
         startLat,
@@ -20,20 +22,22 @@ const locationResolvers = {
         UserId,
       });
     },
-    async updateLocation(root, { id, endLat, endLong, distance }, { models }) {
+    async updateLocation(root, {
+      id, endLat, endLong, distance,
+    }, { models }) {
       models.Location.update(
         {
-          endLat: endLat,
-          endLong: endLong,
-          distance: distance,
+          endLat,
+          endLong,
+          distance,
         },
-        { where: { id: id } }
+        { where: { id } },
       );
       return models.Location.findByPk(id);
     },
     async deleteLocation(root, { id }, { models }) {
-      models.Location.destroy({ where: { id: id } });
-      return "Location successfully deleted";
+      models.Location.destroy({ where: { id } });
+      return 'Location successfully deleted';
     },
   },
 

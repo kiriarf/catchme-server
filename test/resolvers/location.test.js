@@ -1,12 +1,12 @@
-const gql = require("graphql-tag");
-const { ApolloServer } = require("apollo-server");
-const raceResolvers = require("../../src/resolvers/race");
-const userResolvers = require("../../src/resolvers/user");
-const locationResolvers = require("../../src/resolvers/location");
-const typeDefs = require("../../src/schema");
-const models = require("../../models");
-const { createTestClient } = require("apollo-server-testing");
-const db = require("../../models/index");
+const gql = require('graphql-tag');
+const { ApolloServer } = require('apollo-server');
+const { createTestClient } = require('apollo-server-testing');
+const raceResolvers = require('../../src/resolvers/race');
+const userResolvers = require('../../src/resolvers/user');
+const locationResolvers = require('../../src/resolvers/location');
+const typeDefs = require('../../src/schema');
+const models = require('../../models');
+const db = require('../../models/index');
 
 const CREATE_RACE = gql`
   mutation createRace($distance: Int!) {
@@ -94,7 +94,7 @@ const DELETE_LOCATION = gql`
   }
 `;
 
-describe("Location resolvers", () => {
+describe('Location resolvers', () => {
   let server;
 
   beforeAll(async () => {
@@ -111,7 +111,7 @@ describe("Location resolvers", () => {
     await server.stop();
   });
 
-  it("1: the location can be fetched with the user that belongs to", async () => {
+  it('1: the location can be fetched with the user that belongs to', async () => {
     const { query, mutate } = createTestClient(server);
     const resCreateRace = await mutate({
       mutation: CREATE_RACE,
@@ -119,7 +119,7 @@ describe("Location resolvers", () => {
     });
     const resUser1 = await mutate({
       mutation: CREATE_USER,
-      variables: { username: "testguy", RaceId: 1 },
+      variables: { username: 'testguy', RaceId: 1 },
     });
     const resCreateLocation = await mutate({
       mutation: CREATE_LOCATION,
@@ -138,7 +138,7 @@ describe("Location resolvers", () => {
     });
     expect(resLocation).toMatchSnapshot();
   });
-  it("2: the location can be updated and fetched with the user that belongs to", async () => {
+  it('2: the location can be updated and fetched with the user that belongs to', async () => {
     const { query, mutate } = createTestClient(server);
     const resUpdateLocation = await mutate({
       mutation: UPDATE_LOCATION,
@@ -156,11 +156,11 @@ describe("Location resolvers", () => {
     expect(resNewLocation).toMatchSnapshot();
   });
 
-  it("3: can delete the location", async () => {
+  it('3: can delete the location', async () => {
     const { mutate } = createTestClient(server);
     const resDeleteLocation = await mutate({
       mutation: DELETE_LOCATION,
-      variables: {id: 1},
+      variables: { id: 1 },
     });
     expect(resDeleteLocation).toMatchSnapshot();
   });

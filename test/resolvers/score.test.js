@@ -1,12 +1,12 @@
-const gql = require("graphql-tag");
-const { ApolloServer } = require("apollo-server");
-const raceResolvers = require("../../src/resolvers/race");
-const userResolvers = require("../../src/resolvers/user");
-const scoreResolvers = require("../../src/resolvers/score");
-const typeDefs = require("../../src/schema");
-const models = require("../../models");
-const { createTestClient } = require("apollo-server-testing");
-const db = require("../../models/index");
+const gql = require('graphql-tag');
+const { ApolloServer } = require('apollo-server');
+const { createTestClient } = require('apollo-server-testing');
+const raceResolvers = require('../../src/resolvers/race');
+const userResolvers = require('../../src/resolvers/user');
+const scoreResolvers = require('../../src/resolvers/score');
+const typeDefs = require('../../src/schema');
+const models = require('../../models');
+const db = require('../../models/index');
 
 const CREATE_RACE = gql`
   mutation createRace($distance: Int!) {
@@ -46,7 +46,7 @@ const QUERY_SCORE = gql`
     }
   }
 `;
-describe("User resolvers", () => {
+describe('User resolvers', () => {
   let server;
 
   beforeAll(async () => {
@@ -63,7 +63,7 @@ describe("User resolvers", () => {
     await server.stop();
   });
 
-  it("1: the score can be fetched with the user that belongs to", async () => {
+  it('1: the score can be fetched with the user that belongs to', async () => {
     const { query, mutate } = createTestClient(server);
     const resCreateRace = await mutate({
       mutation: CREATE_RACE,
@@ -71,7 +71,7 @@ describe("User resolvers", () => {
     });
     const resUser1 = await mutate({
       mutation: CREATE_USER,
-      variables: { username: "testguy", RaceId: 1 },
+      variables: { username: 'testguy', RaceId: 1 },
     });
     const resCreateScore = await mutate({
       mutation: CREATE_SCORE,

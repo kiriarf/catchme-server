@@ -17,7 +17,7 @@ const userResolvers = {
       });
     },
     async updateUser(root, { id, position }, { models }) {
-      models.User.update({ position: position }, { where: { id: id } });
+      models.User.update({ position }, { where: { id } });
       return models.User.findByPk(id);
     },
   },

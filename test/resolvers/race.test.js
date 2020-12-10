@@ -1,10 +1,10 @@
-const gql = require("graphql-tag");
-const { ApolloServer } = require("apollo-server");
-const resolvers = require("../../src/resolvers/race.js");
-const typeDefs = require("../../src/schema");
-const models = require("../../models");
-const { createTestClient } = require("apollo-server-testing");
-const db = require("../../models/index");
+const gql = require('graphql-tag');
+const { ApolloServer } = require('apollo-server');
+const { createTestClient } = require('apollo-server-testing');
+const resolvers = require('../../src/resolvers/race.js');
+const typeDefs = require('../../src/schema');
+const models = require('../../models');
+const db = require('../../models/index');
 
 const CREATE_RACE = gql`
   mutation createRace($distance: Int!) {
@@ -49,7 +49,7 @@ const UPDATE_RACE_END_TIME = gql`
   }
 `;
 
-describe("Race resolvers", () => {
+describe('Race resolvers', () => {
   let server;
 
   beforeAll(async () => {
@@ -66,7 +66,7 @@ describe("Race resolvers", () => {
     await server.stop();
   });
 
-  it("1: fetches single race after it is created", async () => {
+  it('1: fetches single race after it is created', async () => {
     const { query, mutate } = createTestClient(server);
     const createRaceRes = await mutate({
       mutation: CREATE_RACE,
@@ -79,7 +79,7 @@ describe("Race resolvers", () => {
     expect(raceRes).toMatchSnapshot();
   });
 
-  it("2: fetches array of two races when second race is created", async () => {
+  it('2: fetches array of two races when second race is created', async () => {
     const { query, mutate } = createTestClient(server);
     const createRaceRes = await mutate({
       mutation: CREATE_RACE,
@@ -91,15 +91,15 @@ describe("Race resolvers", () => {
     expect(racesRes).toMatchSnapshot();
   });
 
-  it("3: can update the start and end time", async () => {
+  it('3: can update the start and end time', async () => {
     const { query, mutate } = createTestClient(server);
     const updateRaceStartTimeRes = await mutate({
       mutation: UPDATE_RACE_START_TIME,
-      variables: { id: 1, startTime: 1607598979 }
+      variables: { id: 1, startTime: 1607598979 },
     });
     const updateRaceEndTimeRes = await mutate({
       mutation: UPDATE_RACE_END_TIME,
-      variables: { id: 1, endTime: 1607698979 }
+      variables: { id: 1, endTime: 1607698979 },
     });
     const raceRes = await query({
       query: QUERY_RACE,

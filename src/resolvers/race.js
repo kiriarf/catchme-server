@@ -17,11 +17,11 @@ const raceResolvers = {
       });
     },
     async updateRaceStartTime(root, { id, startTime }, { models }) {
-      models.Race.update({ startTime: startTime }, { where: { id: id } });
+      models.Race.update({ startTime }, { where: { id } });
       return models.Race.findByPk(id);
     },
     async updateRaceEndTime(root, { id, endTime }, { models }) {
-      models.Race.update({ endTime: endTime }, { where: { id: id } });
+      models.Race.update({ endTime }, { where: { id } });
       return models.Race.findByPk(id);
     },
   },
