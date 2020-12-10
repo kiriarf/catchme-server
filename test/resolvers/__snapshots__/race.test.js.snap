@@ -17,3 +17,21 @@ Object {
   },
 }
 `;
+
+exports[`Race resolvers fetches single race 2`] = `
+Object {
+  "data": Object {
+    "race": Object {
+      "distance": 1000,
+      "id": 1,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
