@@ -19,13 +19,40 @@ const QUERY_RACE = gql`
     race(id: $id) {
       id
       distance
+      startTime
+      endTime
     }
   }
 `;
+const QUERY_RACES = gql`
+  query {
+    races {
+      id
+      distance
+    }
+  }
+`;
+const UPDATE_RACE_START_TIME = gql`
+  mutation updateRaceStartTime($id: Int!, $startTime: Int!) {
+    updateRaceStartTime(id: $id, startTime: $startTime) {
+      id
+      startTime
+    }
+  }
+`;
+const UPDATE_RACE_END_TIME = gql`
+  mutation updateRaceEndTime($id: Int!, $endTime: Int!) {
+    updateRaceEndTime(id: $id, endTime: $endTime) {
+      id
+      endTime
+    }
+  }
+`;
+
 describe("Race resolvers", () => {
   let server;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = new ApolloServer({
       typeDefs,
       resolvers,
@@ -36,28 +63,48 @@ describe("Race resolvers", () => {
   afterAll(async () => {
     await db.sequelize.sync({ force: true });
     await db.sequelize.close();
-  });
-  afterEach(async () => {
     await server.stop();
   });
 
-  it("creates single race", async () => {
-    const { mutate } = createTestClient(server);
-    const res = await mutate({
+  it("fetches single race after it is created", async () => {
+    const { query, mutate } = createTestClient(server);
+    const createRaceRes = await mutate({
       mutation: CREATE_RACE,
       variables: { distance: 1000 },
     });
-    expect(res).toMatchSnapshot();
-  });
-
-  it("fetches single race", async () => {
-    const { query } = createTestClient(server);
-    const res = await query({
+    const raceRes = await query({
       query: QUERY_RACE,
       variables: { id: 1 },
     });
-    expect(res).toMatchSnapshot();
-    expect(res.data).toEqual({ race: { distance: 1000, id: 1 } });
-    expect(res.error).toEqual(undefined);
+    expect(raceRes).toMatchSnapshot();
+  });
+
+  it("fetches array of two races when second race is created", async () => {
+    const { query, mutate } = createTestClient(server);
+    const createRaceRes = await mutate({
+      mutation: CREATE_RACE,
+      variables: { distance: 2000 },
+    });
+    const racesRes = await query({
+      query: QUERY_RACES,
+    });
+    expect(racesRes).toMatchSnapshot();
+  });
+
+  it("can update the start and end time", async () => {
+    const { query, mutate } = createTestClient(server);
+    const updateRaceStartTimeRes = await mutate({
+      mutation: UPDATE_RACE_START_TIME,
+      variables: { id: 1, startTime: 1607598979 }
+    });
+    const updateRaceEndTimeRes = await mutate({
+      mutation: UPDATE_RACE_END_TIME,
+      variables: { id: 1, endTime: 1607698979 }
+    });
+    const raceRes = await query({
+      query: QUERY_RACE,
+      variables: { id: 1 },
+    });
+    expect(raceRes).toMatchSnapshot();
   });
 });

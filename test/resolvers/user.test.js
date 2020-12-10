@@ -1,6 +1,9 @@
 const gql = require("graphql-tag");
 const { ApolloServer } = require("apollo-server");
-const resolvers = require("../../src/resolvers/*");
+const raceResolvers = require("../../src/resolvers/race");
+const userResolvers = require("../../src/resolvers/user");
+const locationResolvers = require("../../src/resolvers/location");
+const scoreResolvers = require("../../src/resolvers/score");
 const typeDefs = require("../../src/schema");
 const models = require("../../models");
 const { createTestClient } = require("apollo-server-testing");
@@ -15,25 +18,36 @@ const CREATE_RACE = gql`
   }
 `;
 
+const QUERY_RACE = gql`
+  query race($id: Int!) {
+    race(id: $id) {
+      id
+      distance
+      users {
+        id
+        username
+        position
+      }
+    }
+  }
+`;
+
 const CREATE_USER = gql`
   mutation createUser($username: String!, $RaceId: Int!) {
     createUser(username: $username, RaceId: $RaceId) {
       id
       username
       position
-      race {
-        distance
-      }
     }
   }
 `;
 const CREATE_LOCATION = gql`
   mutation createLocation(
-    $startLat: Int!
-    $startLong: Int!
-    $endLat: Int!
-    $endLong: Int!
-    $distance: Int!
+    $startLat: Float!
+    $startLong: Float!
+    $endLat: Float!
+    $endLong: Float!
+    $distance: Float!
     $UserId: Int!
   ) {
     createLocation(
@@ -50,7 +64,6 @@ const CREATE_LOCATION = gql`
       endLat
       endLong
       distance
-      UserId
     }
   }
 `;
@@ -59,7 +72,6 @@ const CREATE_SCORE = gql`
     createScore(time: $time, UserId: $UserId) {
       id
       time
-      UserId
     }
   }
 `;
@@ -70,9 +82,11 @@ const QUERY_USER = gql`
       username
       position
       race {
+        id
         distance
       }
       location {
+        id
         startLat
         startLong
         endLat
@@ -80,8 +94,26 @@ const QUERY_USER = gql`
         distance
       }
       score {
+        id
         time
       }
+    }
+  }
+`;
+const QUERY_USERS = gql`
+  query {
+    users {
+      id
+      username
+      position
+    }
+  }
+`;
+const UPDATE_USER = gql`
+  mutation updateUser($id: Int!, $position: Int!) {
+    updateUser(id: $id, position: $position) {
+      id
+      position
     }
   }
 `;
@@ -89,10 +121,10 @@ const QUERY_USER = gql`
 describe("User resolvers", () => {
   let server;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = new ApolloServer({
       typeDefs,
-      resolvers,
+      resolvers: [raceResolvers, userResolvers, locationResolvers, scoreResolvers],
       context: { models },
     });
   });
@@ -100,33 +132,67 @@ describe("User resolvers", () => {
   afterAll(async () => {
     await db.sequelize.sync({ force: true });
     await db.sequelize.close();
-  });
-  afterEach(async () => {
     await server.stop();
   });
 
-  it("creates a user", async () => {
-    const { mutate } = createTestClient(server);
-    const res = await mutate({
+  it("the race has two users", async () => {
+    const { query, mutate } = createTestClient(server);
+    const resCreateRace = await mutate({
       mutation: CREATE_RACE,
       variables: { distance: 1000 },
     });
-    const resUser = await mutate({
+    const resUser1 = await mutate({
       mutation: CREATE_USER,
       variables: { username: "testguy", RaceId: 1 },
     });
-    expect(res).toMatchSnapshot();
+    const resUser2 = await mutate({
+      mutation: CREATE_USER,
+      variables: { username: "testguy2", RaceId: 1 },
+    });
+    const resRace = await query({
+      query: QUERY_RACE,
+      variables: { id: 1 },
+    });
+    expect(resRace).toMatchSnapshot();
+  })
+
+  it("can fetch a user with its race, location, and score", async () => {
+    const { query, mutate } = createTestClient(server);
+    const resLoc = await mutate({
+      mutation: CREATE_LOCATION,
+      variables: { 
+        startLat: 53.12345,
+        startLong: 0.12345,
+        endLat: 53.12345,
+        endLong: 0.12345,
+        distance: 0,
+        UserId: 1
+       },
+    });
+    const resScore = await mutate({
+      mutation: CREATE_SCORE,
+      variables: { time: 300000, UserId: 1 },
+    });
+    const resUser = await query({
+      query: QUERY_USER,
+      variables: { id: 1 },
+    }); 
     expect(resUser).toMatchSnapshot();
   });
 
-  // it("fetches single race", async () => {
-  //   const { query } = createTestClient(server);
-  //   const res = await query({
-  //     query: QUERY_RACE,
-  //     variables: { id: 1 },
-  //   });
-  //   expect(res).toMatchSnapshot();
-  //   expect(res.data).toEqual({ race: { distance: 1000, id: 1 } });
-  //   expect(res.error).toEqual(undefined);
-  //});
+  it("can update the users' position", async () => {
+    const { query, mutate } = createTestClient(server);
+    const updateUser1Res = await mutate({
+      mutation: UPDATE_USER,
+      variables: {id: 1, position: 1},
+    });
+    const updateUser2Res = await mutate({
+      mutation: UPDATE_USER,
+      variables: {id: 2, position: 2},
+    });
+    const resUsers = await query({
+      query: QUERY_USERS,
+    }); 
+    expect(resUsers).toMatchSnapshot();
+  });
 });
