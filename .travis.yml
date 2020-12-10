@@ -3,4 +3,5 @@ node_js:
   - "stable"
 
 script:
+  - NODE_ENV=test node_modules/.bin/sequelize db:migrate
   - yarn test
