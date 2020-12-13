@@ -9,7 +9,7 @@ module.exports = {
       },
       time: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       UserId: {
         allowNull: false,

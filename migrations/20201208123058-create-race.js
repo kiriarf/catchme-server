@@ -9,13 +9,13 @@ module.exports = {
       },
       distance: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       startTime: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       endTime: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,

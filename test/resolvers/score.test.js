@@ -9,7 +9,7 @@ const models = require('../../models');
 const db = require('../../models/index');
 
 const CREATE_RACE = gql`
-  mutation createRace($distance: Int!) {
+  mutation createRace($distance: Float!) {
     createRace(distance: $distance) {
       id
       distance
@@ -26,7 +26,7 @@ const CREATE_USER = gql`
   }
 `;
 const CREATE_SCORE = gql`
-  mutation createScore($time: Int!, $UserId: Int!) {
+  mutation createScore($time: Float!, $UserId: Int!) {
     createScore(time: $time, UserId: $UserId) {
       id
       time

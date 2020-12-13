@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Score.init(
     {
-      time: DataTypes.INTEGER,
+      time: DataTypes.FLOAT,
     },
     {
       sequelize,

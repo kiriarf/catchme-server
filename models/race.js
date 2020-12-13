@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
 
   Race.init(
     {
-      distance: DataTypes.INTEGER,
-      startTime: DataTypes.INTEGER,
-      endTime: DataTypes.INTEGER,
+      distance: DataTypes.FLOAT,
+      startTime: DataTypes.FLOAT,
+      endTime: DataTypes.FLOAT,
     },
     {
       sequelize,

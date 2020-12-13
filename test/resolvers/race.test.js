@@ -7,7 +7,7 @@ const models = require('../../models');
 const db = require('../../models/index');
 
 const CREATE_RACE = gql`
-  mutation createRace($distance: Int!) {
+  mutation createRace($distance: Float!) {
     createRace(distance: $distance) {
       id
       distance
@@ -33,7 +33,7 @@ const QUERY_RACES = gql`
   }
 `;
 const UPDATE_RACE_START_TIME = gql`
-  mutation updateRaceStartTime($id: Int!, $startTime: Int!) {
+  mutation updateRaceStartTime($id: Int!, $startTime: Float!) {
     updateRaceStartTime(id: $id, startTime: $startTime) {
       id
       startTime
@@ -41,7 +41,7 @@ const UPDATE_RACE_START_TIME = gql`
   }
 `;
 const UPDATE_RACE_END_TIME = gql`
-  mutation updateRaceEndTime($id: Int!, $endTime: Int!) {
+  mutation updateRaceEndTime($id: Int!, $endTime: Float!) {
     updateRaceEndTime(id: $id, endTime: $endTime) {
       id
       endTime
