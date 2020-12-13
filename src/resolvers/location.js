@@ -23,10 +23,12 @@ const locationResolvers = {
       });
     },
     async updateLocation(root, {
-      id, endLat, endLong, distance,
+      id, startLat, startLong, endLat, endLong, distance,
     }, { models }) {
       models.Location.update(
-        {
+        { 
+          startLat,
+          startLong,
           endLat,
           endLong,
           distance,

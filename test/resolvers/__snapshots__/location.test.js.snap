@@ -35,8 +35,8 @@ Object {
       "endLat": 51.4987,
       "endLong": 0.1289,
       "id": 1,
-      "startLat": 51.5007,
-      "startLong": 0.1246,
+      "startLat": 51.4987,
+      "startLong": 0.1289,
       "user": Object {
         "id": 1,
         "position": null,

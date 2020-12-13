@@ -60,6 +60,8 @@ const typeDefs = gql`
     updateRaceEndTime(id: Int!, endTime: Float!): Race!
     updateLocation(
       id: Int!
+      startLat: Float!
+      startLong: Float!
       endLat: Float!
       endLong: Float!
       distance: Float!

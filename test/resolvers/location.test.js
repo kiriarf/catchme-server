@@ -71,17 +71,23 @@ const QUERY_LOCATION = gql`
 const UPDATE_LOCATION = gql`
   mutation updateLocation(
     $id: Int!
+    $startLat: Float!
+    $startLong: Float!
     $endLat: Float!
     $endLong: Float!
     $distance: Float!
   ) {
     updateLocation(
       id: $id
+      startLat: $startLat
+      startLong: $startLong
       endLat: $endLat
       endLong: $endLong
       distance: $distance
     ) {
       id
+      startLat
+      startLong
       endLat
       endLong
       distance
@@ -144,6 +150,8 @@ describe('Location resolvers', () => {
       mutation: UPDATE_LOCATION,
       variables: {
         id: 1,
+        startLat: 51.4987,
+        startLong: 0.1289,
         endLat: 51.4987,
         endLong: 0.1289,
         distance: 300.0,
