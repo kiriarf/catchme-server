@@ -41,6 +41,7 @@ const typeDefs = gql`
     location(id: Int!): Location!
     score(id: Int!): Score!
     races: [Race]!
+    scores: [Score]!
   }
 
   type Mutation {

@@ -46,6 +46,19 @@ const QUERY_SCORE = gql`
     }
   }
 `;
+const QUERY_SCORES = gql`
+  query {
+    scores {
+      id
+      time
+      user {
+        id
+        username
+      }
+    }
+  }
+`;
+
 describe('User resolvers', () => {
   let server;
 
@@ -77,10 +90,14 @@ describe('User resolvers', () => {
       mutation: CREATE_SCORE,
       variables: { time: 300000, UserId: 1 },
     });
+    const resScores = await query({
+      query: QUERY_SCORES
+    });
     const resScore = await query({
       query: QUERY_SCORE,
       variables: { id: 1 },
     });
     expect(resScore).toMatchSnapshot();
+    expect(resScores).toMatchSnapshot();
   });
 });

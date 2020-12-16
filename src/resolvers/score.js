@@ -3,6 +3,9 @@ const scoreResolvers = {
     async score(root, { id }, { models }) {
       return models.Score.findByPk(id);
     },
+    async scores(root, args, { models }) {
+      return models.Score.findAll();
+    },
   },
 
   Mutation: {

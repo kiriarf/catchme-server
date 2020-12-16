@@ -22,3 +22,27 @@ Object {
   },
 }
 `;
+
+exports[`User resolvers 1: the score can be fetched with the user that belongs to 2`] = `
+Object {
+  "data": Object {
+    "scores": Array [
+      Object {
+        "id": 1,
+        "time": 300000,
+        "user": Object {
+          "id": 1,
+          "username": "testguy",
+        },
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
