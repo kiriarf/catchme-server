@@ -21,8 +21,3 @@ server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
 
 module.exports = server;
 
-// server.listen(
-//   {
-//     port: env === 'production'? process.env.Port : 4000
-//   }
-// )

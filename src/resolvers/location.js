@@ -26,7 +26,7 @@ const locationResolvers = {
       id, startLat, startLong, endLat, endLong, distance,
     }, { models }) {
       models.Location.update(
-        { 
+        {
           startLat,
           startLong,
           endLat,

@@ -91,7 +91,7 @@ describe('User resolvers', () => {
       variables: { time: 300000, UserId: 1 },
     });
     const resScores = await query({
-      query: QUERY_SCORES
+      query: QUERY_SCORES,
     });
     const resScore = await query({
       query: QUERY_SCORE,

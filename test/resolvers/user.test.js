@@ -184,7 +184,7 @@ describe('User resolvers', () => {
     expect(resUser).toMatchSnapshot();
   });
 
-  it("can fetch multiple users", async () => {
+  it('can fetch multiple users', async () => {
     const { query, mutate } = createTestClient(server);
     const resUsers = await query({
       query: QUERY_USERS,
