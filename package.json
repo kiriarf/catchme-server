@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.js",
     "dev2": "node src/index.js",
     "lint": "eslint .",
-    "test": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --silent",
+    "test": "NODE_ENV=test jest --coverage --runInBand --silent",
     "migrate": "node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
